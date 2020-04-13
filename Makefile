@@ -18,7 +18,7 @@ DOC_FILES := \
 #	README.md
 
 RESGEN2		:= resgen2
-GMCS		:= gmcs
+GMCS		:= mcs
 GMCSFLAGS	:= -optimize -warnaserror
 GIT			:= git
 TAR			:= tar
@@ -42,7 +42,10 @@ info:
 
 SimpleConstraints.dll: ${SC_FILES}
 	${GMCS} ${GMCSFLAGS} -t:library -lib:${MANAGED} \
-		-r:Assembly-CSharp,Assembly-CSharp-firstpass,UnityEngine \
+		-r:Assembly-CSharp,Assembly-CSharp-firstpass \
+		-r:UnityEngine \
+		-r:UnityEngine.UI \
+		-r:UnityEngine.CoreModule \
 		-out:$@ $^
 
 #SimpleConstraints.png: SimpleConstraints.svg
